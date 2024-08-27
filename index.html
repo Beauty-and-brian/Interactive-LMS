@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Learning Management System</title>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:400,500);
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      header {
+        background-color: #3498db;
+        /* background-color: rgba(52, 152, 219, 1.0); */
+        color: white;
+        /* padding: 10px 0; */
+        text-align: center;
+        width: 100%;
+        background-image: url(./images/1280_work-station-straight-on-view.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .bg-color {
+        background-color: rgba(52, 152, 219, 0.8);
+      }
+
+      .header {
+        /* height: 500px; */
+        /* margin-bottom: -63px; */
+        /* opacity: 0.10; */
+      }
+
+      .text-scramble {
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+
+      .container {
+        padding-left: 5.5rem;
+        padding-right: 5.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+
+      @media screen and (min-width: 320px) and (max-width: 960px) {
+        .container {
+          flex-direction: column;
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        .left-side {
+          padding: 3rem 10rem;
+        }
+      }
+
+      .left-side {
+      }
+
+      .left-side h1 {
+        line-height: 1.5;
+        font-size: 2.8rem;
+        font-family: Oswald, Helvetica Neue, Arial, sans-serif;
+        text-align: left;
+      }
+
+      .left-side a {
+        cursor: pointer;
+        background-color: white;
+        color: #212529;
+        padding: 8px 32px;
+        border-radius: 0.25rem;
+        font-size: 1.2rem;
+        text-decoration: none;
+        box-shadow: 0 6px 6px -3px rgba(48, 56, 64, 1);
+        float: left;
+      }
+
+      .left-side p {
+        margin-bottom: 40px;
+        /* padding: 0 3rem; */
+        text-align: left;
+        line-height: 1.5;
+        font-size: 1.2rem;
+      }
+
+      .left-side a:hover {
+      }
+
+      .right-side {
+      }
+
+      .right-side {
+        width: 100%;
+      }
+
+      .feedback {
+        padding: 0rem 0rem 4rem 0rem;
+      }
+
+      .headline {
+        text-align: center;
+        padding: 3rem 0rem;
+      }
+
+      .headline h2 {
+        font-size: 2rem;
+        border-bottom: 3px solid #2c84dd;
+        display: inline-flex;
+        line-height: 1.5;
+        font-family: Oswald, Helvetica Neue, Arial, sans-serif;
+        color: #303840;
+        margin-bottom: 1rem;
+      }
+
+      .headline p {
+        line-height: 1.5;
+        color: rgba(48, 56, 64, 0.7);
+        font-size: 1.2rem;
+        margin: 0rem 20rem;
+      }
+
+      .carousel-content {
+        display: flex;
+        flex-direction: row;
+        margin: 0rem 8rem;
+      }
+
+      .carousel-item {
+        margin: 0rem 3rem;
+        background-color: white;
+      }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 1px -1px rgba(48, 56, 64, 0.2),
+          0 1px 1px 0 rgba(48, 56, 64, 0.14), 0 1px 3px 0 rgba(48, 56, 64, 0.12);
+      }
+
+      .carousel-item p {
+        color: rgba(48, 56, 64, 0.7);
+        line-height: 1.3;
+      }
+
+      .media {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+      }
+
+      .rounded {
+        border-radius: 50%;
+      }
+
+      .media-left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .media-right {
+        flex: 1 1 0%;
+        margin: 0 0 0 1rem;
+      }
+
+      .media-right p {
+        margin: 0;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+      }
+
+      .rating-item {
+        display: flex;
+        align-items: center;
+        color: #f9c32c;
+      }
+
+      .top-footer {
+        padding: 4rem 0rem;
+        margin: 0rem 8rem;
+        color: rgba(48,56,64,.7);
+      }
+
+      .contained-row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .quarter-column {
+        flex: 0 0 66.6666666667%;
+        max-width: 66.6666666667%;
+      }
+
+      .one-quarter-column{
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+        text-align: right;
+      }
+
+      .one-quarter-column h4{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-family: Oswald, Helvetica Neue, Arial, sans-serif;
+        font-size: 1.5rem;
+      }
+
+      .one-quarter-column p{
+        line-height: 1.5;
+      }
+
+      .divider {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .learn {
+        margin-bottom: 0;
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+      }
+
+      .learn h4{
+        font-family: Oswald, Helvetica Neue, Arial, sans-serif;
+        line-height: 1.4;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .learn .nav-links{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+      }
+
+      .nav-links .nav-link {
+        display: flex;
+        text-decoration: none;
+        color: rgba(48,56,64,.7);
+        margin-bottom: 0.4rem;
+      }
+
+      
+
+      .join {
+        margin-bottom: 0;
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+      }
+
+      .community {
+        margin-bottom: 0;
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+      }
+
+      .flex-column .nav-link{
+        color: rgba(48,56,64, .7);
+      }
+
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        background-color: #2c3e50;
+        text-align: left;
+        margin: 0;
+      }
+
+      nav ul li {
+        display: inline;
+        margin-right: 10px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        padding: 14px 20px;
+        display: inline-block;
+      }
+
+      nav ul li a:hover {
+        background-color: #e74c3c;
+      }
+
+      #container {
+        display: flex;
+        flex: 1;
+      }
+
+      .sidebar {
+        background-color: #2c3e50;
+        color: white;
+        padding: 20px;
+        width: 200px;
+        box-sizing: border-box;
+      }
+
+      .profile-picture {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .profile-picture img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+      }
+
+      .sidebar h2 {
+        text-align: center;
+        border-bottom: 1px solid #f4f4f4;
+        padding-bottom: 10px;
+      }
+
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .sidebar ul li {
+        padding: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .sidebar ul li:hover {
+        background-color: #e74c3c;
+      }
+
+      .sidebar ul li a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .course-list {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+      }
+
+      .course {
+        background-color: white;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #ddd;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        width: 45%;
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .course:hover {
+        transform: scale(1.05);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .course-title {
+        background-color: #2ecc71;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+      }
+
+      .course-content {
+        display: none;
+        padding: 10px;
+      }
+
+      .course-content video,
+      .course-content img {
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      footer {
+        background-color: #3498db;
+        color: white;
+        /* text-align: center; */
+        padding: 3rem 0;
+        width: 100%;
+        margin-top: auto;
+      }
+
+      .sandbox {
+        margin: 0rem 8rem;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .social-media {
+        flex: 0 0 16.6666666667%;
+        max-width: 16.6666666667%;
+      }
+
+      .social-media p {
+        color: hsla(0, 0%, 100%, 1);
+        margin-bottom: 1rem;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+      }
+
+      .nav--flush .nav-link {
+        padding: 0;
+        display: flex;
+        margin-right: 1rem;
+        text-decoration: none;
+      }
+
+      .icono {
+        color: white;
+        font-size: 2rem;
+      }
+
+      .language {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+
+      .privacy {
+        text-align: right;
+        flex: 0 0 33.3333333333%;
+        max-width: 33.3333333333%;
+      }
+
+      .sublinks {
+        display: flex;
+        margin-bottom: 1rem;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .sublinks a {
+        text-decoration: underline;
+        color: white;
+        margin-right: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- style="background-image: url(./images/1280_work-station-straight-on-view.jpg); background-repeat: no-repeat; background-size: cover;" -->
+      <!-- <h1>Interactive Learning Management System</h1> -->
+      <div class="header">
+        <div class="bg-color">
+          <div class="container">
+            <div class="left-side">
+              <h1>
+                Learning and
+                <span class="text-scramble js-text-scramble">Development</span>
+              </h1>
+              <p>
+                Business, Technology and Creative Skills taught by industry
+                experts. Explore a wide range of skills with our professional
+                tutorials.
+              </p>
+              <a href="">Browse Now</a>
+            </div>
+            <div class="right-side">
+              <img src="./images/macbook.png" alt="macbook" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <div id="container">
+      <aside class="sidebar">
+        <div class="profile-picture">
+          <img src="./images/people/Beauty.jpeg" alt="Profile Picture" />
+        </div>
+        <h2>Student Dashboard</h2>
+        <ul>
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Results</a></li>
+          <li><a href="#">Assignments</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Messages</a></li>
+        </ul>
+      </aside>
+      <section class="course-list">
+        <div class="course">
+          <div class="course-title" onclick="toggleCourseDetails(this)">
+            <h2>Course 1: How a fetus grows inside the belly</h2>
+          </div>
+          <div class="course-content">
+            <iframe
+              width="500"
+              height="315"
+              src="https://www.youtube.com/embed/WH9ZJu4wRUE?si=lhTr4bddpSmGAq8C"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <!-- <video src="360video1.mp4" controls></video> -->
+            <img src="animation1.gif" alt="Course 1 Animation" />
+            <p>Outline: HTML, CSS, JavaScript basics...</p>
+          </div>
+        </div>
+        <div class="course">
+          <div class="course-title" onclick="toggleCourseDetails(this)">
+            <h2>Course 2: Advanced JavaScript</h2>
+          </div>
+          <div class="course-content">
+            <!-- <video src="360video2.mp4" controls></video> -->
+            <iframe
+              width="500"
+              height="315"
+              src="https://www.youtube.com/embed/Og5xAdC8EUI?si=YaLT9arHWRIzeVs7"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <img src="animation2.gif" alt="Course 2 Animation" />
+            <p>Outline: ES6, Async programming, Frameworks...</p>
+          </div>
+        </div>
+        <div class="course">
+          <div class="course-title" onclick="toggleCourseDetails(this)">
+            <h2>Course 3: Data Science with Python</h2>
+          </div>
+          <div class="course-content">
+            <video src="360video3.mp4" controls></video>
+            <img src="animation3.gif" alt="Course 3 Animation" />
+            <p>Outline: NumPy, Pandas, Matplotlib...</p>
+          </div>
+        </div>
+        <div class="course">
+          <div class="course-title" onclick="toggleCourseDetails(this)">
+            <h2>Course 4: Machine Learning</h2>
+          </div>
+          <div class="course-content">
+            <video src="360video4.mp4" controls></video>
+            <img src="animation4.gif" alt="Course 4 Animation" />
+            <p>Outline: Supervised, Unsupervised learning...</p>
+          </div>
+        </div>
+        <!-- Add more courses as needed -->
+      </section>
+    </div>
+    <section class="feedback">
+      <div class="headline">
+        <h2>Feedback</h2>
+        <p>
+          What other students turned professionals have to say about us after
+          learning with us and reaching their goals.
+        </p>
+      </div>
+
+      <div class="carousel-content">
+        <div class="carousel-item card card-body">
+          <blockquote>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia
+              distinctio reiciendis iusto id, doloribus optio soluta laborum
+              nobis dolor tempore velit porro maiores eveniet voluptas officia
+              ipsa magnam aliquam. Perferendis?
+            </p>
+            <div class="media">
+              <div class="media-left">
+                <img
+                  src="./images/people/guy-1.jpg"
+                  alt="avatar"
+                  width="40"
+                  class="rounded"
+                />
+              </div>
+              <div class="media-right">
+                <p><strong>Beaubeau2</strong></p>
+                <div class="rating">
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="far fa-star"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+        <div class="carousel-item card card-body">
+          <blockquote>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia
+              distinctio reiciendis iusto id, doloribus optio soluta laborum
+              nobis dolor tempore velit porro maiores eveniet voluptas officia
+              ipsa magnam aliquam. Perferendis?
+            </p>
+            <div class="media">
+              <div class="media-left">
+                <img
+                  src="./images/people/guy-1.jpg"
+                  alt="avatar"
+                  width="40"
+                  class="rounded"
+                />
+              </div>
+              <div class="media-right">
+                <p><strong>Beaubeau</strong></p>
+                <div class="rating">
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="fas fa-star"></i>
+                  </span>
+                  <span class="rating-item">
+                    <i class="far fa-star"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+    <section class="top-footer">
+      <div class="contained-row">
+        <div class="quarter-column">
+          <div class="divider">
+            <div class="learn">
+              <h4>Learn</h4>
+              <nav class="nav nav-links flex-column">
+                <a href="" class="nav-link">Library</a>
+                <a href="" class="nav-link">Featured</a>
+                <a href="" class="nav-link">Explore</a>
+                <a href="" class="nav-link">Learning Paths</a>
+              </nav>
+            </div>
+            <div class="learn">
+              <h4>Join us</h4>
+              <nav class="nav nav-links flex-column">
+                <a href="" class="nav-link">Pricing</a>
+                <a href="" class="nav-link">Login</a>
+                <a href="" class="nav-link">Sign up</a>
+                <a href="" class="nav-link">Payment</a>
+              </nav>
+            </div>
+            <div class="learn">
+              <h4>Community</h4>
+              <nav class="nav nav-links flex-column">
+                <a href="" class="nav-link">Discussions</a>
+                <a href="" class="nav-link">Ask Questions</a>
+                <a href="" class="nav-link">Student Profile</a>
+                <a href="" class="nav-link">Instructor Profile</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="one-quarter-column">
+          <h4>Learning Management System</h4>
+          <p class="content">
+            LMS is an online learning platform that helps anyone achieve their personal and professional goals.
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="sandbox">
+        <div class="row">
+          <div class="social-media">
+            <p><strong>Follow Us</strong></p>
+            <nav class="nav nav-links nav--flush">
+              <a href="" class="nav-link">
+                <i class="fab fa-facebook-square icono"></i>
+              </a>
+              <a href="" class="nav-link">
+                <i class="fab fa-twitter-square icono"></i>
+              </a>
+              <a href="" class="nav-link">
+                <i class="fab fa-vimeo icono"></i>
+              </a>
+              <a href="" class="nav-link">
+                <i class="fab fa-youtube icono"></i>
+              </a>
+            </nav>
+          </div>
+          <div class="language"></div>
+          <div class="privacy">
+            <p class="sublinks">
+              <a href="">Terms</a>
+              <a href="">Privacy</a>
+            </p>
+            <p>Copyright 2024 &copy; All rights reserved</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      function toggleCourseDetails(element) {
+        const courseContent = element.nextElementSibling;
+        if (courseContent.style.display === "block") {
+          courseContent.style.display = "none";
+        } else {
+          courseContent.style.display = "block";
+        }
+      }
+    </script>
+    <!-- scramble js -->
+    <script src="./js/app/scramble.js"></script>
+  </body>
+</html>
